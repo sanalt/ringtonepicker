@@ -50,10 +50,6 @@ public class RingtonePicker extends CordovaPlugin {
    	 	}
 	}
 
-    public Object getRingtone() {
-        
-    }
-    
     public void getRingtone()
 	{
 		Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER); 
