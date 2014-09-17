@@ -31,7 +31,7 @@ import android.content.Intent;
  * This class provides access to vibration on the device.
  */
 public class RingtonePicker extends CordovaPlugin {
-
+	public String notification_uri;
 	private CallbackContext callbackContext = null;
     /**
      * Constructor.
