@@ -26,7 +26,7 @@ import android.content.Context;
 import android.media.RingtoneManager;
 import org.apache.cordova.PluginResult;
 import android.util.Log;
-
+import android.content.Intent;
 /**
  * This class provides access to vibration on the device.
  */
