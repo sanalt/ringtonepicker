@@ -29,6 +29,7 @@ import android.util.Log;
 import android.content.Intent;
 import android.provider.Settings;
 import android.net.Uri;
+import android.app.Activity;
 /**
  * This class provides access to vibration on the device.
  */
