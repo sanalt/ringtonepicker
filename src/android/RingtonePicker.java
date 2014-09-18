@@ -47,7 +47,12 @@ public class RingtonePicker extends CordovaPlugin {
 		this.callbackContext = callbackContext;
     	if (action.equals("getRingtone")) { 
         	Log.d("customPlugin", " getRingtone ");
-        	this.cordova.getThreadPool().execute(new Runnable() {Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER); 
+        	
+        	Runnable getRingtone = new Runnable() {
+
+                    @Override
+                    public void run() {
+                    Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER); 
    		intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Select ringtone for notifications:");
     	intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
     	intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_NOTIFICATION);
@@ -60,18 +65,16 @@ public class RingtonePicker extends CordovaPlugin {
     	{
         	intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, Uri.parse(notification_uri));
     	}
-    	cordova.getActivity().startActivityForResult(intent, 5);});
+    	cordova.getActivity().startActivityForResult(intent, 5);
+                    }
+                };
+        	this.cordova.getThreadPool().execute(getRingtone);
         	return true;
     	}
    		else {
         	return false;
    	 	}
 	}
-
-    public void getRingtone()
-	{
-		
-}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
