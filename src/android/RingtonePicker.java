@@ -65,10 +65,11 @@ public class RingtonePicker extends CordovaPlugin {
     	{
         	intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, Uri.parse(notification_uri));
     	}
+    	cordova.setActivityResultCallback(RingtonePicker.this);
     	cordova.getActivity().startActivityForResult(intent, 5);
                     }
                 };
-        	this.cordova.getThreadPool().execute(getRingtone);
+        	this.cordova.getActivity().runOnUiThread(getRingtone);
         	return true;
     	}
    		else {
