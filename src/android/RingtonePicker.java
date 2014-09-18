@@ -47,7 +47,7 @@ public class RingtonePicker extends CordovaPlugin {
 		this.callbackContext = callbackContext;
     	if (action.equals("getRingtone")) { 
         	Log.d("customPlugin", " getRingtone ");
-        	this.cordova.getThreadPool().execute(this.getRingtone());
+        	this.cordova.getThreadPool().execute(new Runnable() {this.getRingtone()});
         	return true;
     	}
    		else {
