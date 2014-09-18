@@ -94,11 +94,10 @@ public class RingtonePicker extends CordovaPlugin {
         	if (uri != null)
         	{
         		Log.d("customPlugin", "Setting ringtone to  " + notification_uri);
-        		JSONObject jsonObj = new JSONObject();
-        		jsonObj.put("title", title);
-        		jsonObj.put("uri", uri.toString());
+        		String returnText = "{\"ringtone\": {\"title\": \""+title+"\",\"uri\": \""+uri+"\"}}";
+
         		Log.d("jsonObj", jsonObj.toString());
-        		PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, uri.toString());
+        		PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, returnText);
         		pluginResult.setKeepCallback(true);
         		this.callbackContext.sendPluginResult(pluginResult);
         	}
