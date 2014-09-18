@@ -30,6 +30,8 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.net.Uri;
 import android.app.Activity;
+import android.media.Ringtone;
+import org.json.JSONObject;
 /**
  * This class provides access to vibration on the device.
  */
@@ -84,10 +86,18 @@ public class RingtonePicker extends CordovaPlugin {
     	if (resultCode == Activity.RESULT_OK && requestCode == 5)
     	{
         	Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+        	Ringtone ringtone = RingtoneManager.getRingtone(this.cordova.getActivity(), uri)
+        	String title = ringtone.getTitle(this.cordova.getActivity());
        	 	Log.d("customPlugin", "I picked this ringtone " + uri);
+       	 	Log.d("customPlugin", "I picked this ringtone title" + title);
+       	 	
         	if (uri != null)
         	{
         		Log.d("customPlugin", "Setting ringtone to  " + notification_uri);
+        		JSONObject jsonObj = new JSONObject();
+        		jsonObj.putString("title", title);
+        		jsonObj.putString("uri", uri.toString());
+        		Log.d("jsonObj", jsonObj.toString());
         		PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, uri.toString());
         		pluginResult.setKeepCallback(true);
         		this.callbackContext.sendPluginResult(pluginResult);
