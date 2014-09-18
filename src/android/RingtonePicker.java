@@ -47,7 +47,7 @@ public class RingtonePicker extends CordovaPlugin {
 		this.callbackContext = callbackContext;
     	if (action.equals("getRingtone")) { 
         	Log.d("customPlugin", " getRingtone ");
-        	this.getRingtone();
+        	this.cordova.getThreadPool().execute(this.getRingtone());
         	return true;
     	}
    		else {
@@ -76,14 +76,14 @@ public class RingtonePicker extends CordovaPlugin {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-     	Log.i("customPlugin", "Calling onActivityResult");
+     	Log.d("customPlugin", "Calling onActivityResult");
     	if (resultCode == Activity.RESULT_OK && requestCode == 5)
     	{
         	Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-       	 	Log.i("customPlugin", "I picked this ringtone " + uri);
+       	 	Log.d("customPlugin", "I picked this ringtone " + uri);
         	if (uri != null)
         	{
-        		Log.i("customPlugin", "Setting ringtone to  " + notification_uri);
+        		Log.d("customPlugin", "Setting ringtone to  " + notification_uri);
         		PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, uri.toString());
         		pluginResult.setKeepCallback(true);
         		this.callbackContext.sendPluginResult(pluginResult);
