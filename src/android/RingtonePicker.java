@@ -86,7 +86,7 @@ public class RingtonePicker extends CordovaPlugin {
     	if (resultCode == Activity.RESULT_OK && requestCode == 5)
     	{
         	Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-        	Ringtone ringtone = RingtoneManager.getRingtone(this.cordova.getActivity(), uri)
+        	Ringtone ringtone = RingtoneManager.getRingtone(this.cordova.getActivity(), uri);
         	String title = ringtone.getTitle(this.cordova.getActivity());
        	 	Log.d("customPlugin", "I picked this ringtone " + uri);
        	 	Log.d("customPlugin", "I picked this ringtone title" + title);
